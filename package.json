@@ -22,7 +22,8 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "video-react": "^0.14.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.4",

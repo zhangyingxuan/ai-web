@@ -77,7 +77,7 @@ class SiderCustom extends Component {
             }>{childMenu}</Menu.SubMenu>
         } else {
             return <Menu.Item key={data.title}>
-                <NavLink to={data.url} onClick={this.props.addTabs}>
+                <NavLink to={data.path} onClick={this.props.addTabs}>
                     {data.icon && <Icon type={data.icon}/>}
                     <span className="nav-text">{data.title}</span>
                 </NavLink>

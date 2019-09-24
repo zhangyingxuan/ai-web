@@ -104,21 +104,100 @@ class DashBoard extends React.Component {
     }
 
     componentWillMount() {
-        this.initChartOptions()
+        this.initChartOptions().then((res) => {
+            this.loadData()
+            this.loadBarData()
+        }).catch(() => {
+
+        })
+    }
+
+
+    loadBarData() {
+        const {optionBar} = this.state
+        var dataAxis = ['点', '击', '柱', '子', '或', '者', '两'];
+        var data = [10, 52, 200, 334, 390, 330, 220];
+        var yMax = 500;
+        var dataShadow = [];
+
+        for (var i = 0; i < data.length; i++) {
+            dataShadow.push(yMax);
+        }
+
+        let series = this.state.optionBar.series[0]
+        series.data = data
+        this.setState({
+            optionBar: {
+                ...optionBar,
+                xAxis: {
+                    ...optionBar.xAxis,
+                    data: dataAxis
+                },
+            }
+        })
+    }
+
+
+    loadData() {
+        const {optionLine} = this.state
+        let dataSetSource = []
+        let series = []
+
+        var base = +new Date(1968, 9, 3);
+        var oneDay = 24 * 3600 * 1000;
+        var date = [];
+        var data = [Math.random() * 300];
+
+        for (var i = 1; i < 20000; i++) {
+            var now = new Date(base += oneDay);
+            date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+            data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+        }
+        data.unshift('线形图')
+        dataSetSource.push(date, data)
+        series.push({
+            type: 'line',
+            smooth: true,
+            areaStyle: '#D7E2D8',
+            itemStyle: lineStyleArr[0],
+            seriesLayoutBy: 'row',
+            encode: {x: 0, y: 1, legend: 1, seriesName: 1},
+            showSymbol: false
+        })
+
+        this.setState({
+            optionLine: {
+                ...optionLine,
+                dataset: {
+                    source: dataSetSource
+                },
+                series
+            }
+        })
     }
 
     initChartOptions() {
-        const defaultPodData = [
-            {value: 0, name: '0~2%'},
-            {value: 0, name: '2~20%'},
-            {value: 0, name: '20~50%'},
-            {value: 0, name: '50~100%'},
+        return new Promise((resolve, reject) => {
+            const defaultPodData = [
+                {value: 0, name: '0~2%'},
+                {value: 0, name: '2~20%'},
+                {value: 0, name: '20~50%'},
+                {value: 0, name: '50~100%'},
             ]
-        const optionPie = this.getCommonOptions('CPU使用情况', 'cpu', 'cpu使用率', defaultPodData)
-        const optionLine = this.getLineOptions()
-        this.setState({
-            optionPie,
-            optionLine
+            try {
+                const optionPie = this.getCommonOptions('使用情况', 'cpu', '使用率', defaultPodData)
+                const optionLine = this.getLineOptions()
+                const optionBar = this.getBarOptions()
+                this.setState({
+                    optionPie,
+                    optionLine,
+                    optionBar
+                }, () => {
+                    resolve(true)
+                })
+            }catch (e) {
+                reject(false)
+            }
         })
     }
 
@@ -188,22 +267,22 @@ class DashBoard extends React.Component {
     getLineOptions() {
         return {
             title: {
-                text: '容器CPU利用率（%）',
+                text: '利用率（%）',
                 left: '2%',
                 top: 'top',
                 textStyle: titleCommonStyle
             },
             tooltip: {
                 trigger: 'axis',
-                formatter: (params) => {
-                    // '{a} <br/>{b} : {c} ({d}%)'
-                    const tooltipInfo = []
-                    params.forEach((param, index) => {
-                        const addition = param.seriesName && param.seriesName.indexOf('利用率') > -1 ? '%' : ''
-                        tooltipInfo.push(`${param.seriesName}: ${param.value[index + 1]}` + addition)
-                    })
-                    return tooltipInfo.join('<br/>')
-                }
+                // formatter: (params) => {
+                //     // '{a} <br/>{b} : {c} ({d}%)'
+                //     const tooltipInfo = []
+                //     params.forEach((param, index) => {
+                //         const addition = param.seriesName && param.seriesName.indexOf('利用率') > -1 ? '%' : ''
+                //         tooltipInfo.push(`${param.seriesName}: ${param.value[index + 1]}` + addition)
+                //     })
+                //     return tooltipInfo.join('<br/>')
+                // }
             },
             dataset: {
                 source: []
@@ -224,6 +303,60 @@ class DashBoard extends React.Component {
         }
     }
 
+    getBarOptions() {
+        return {
+            color: '#9BCA63',
+            title: {
+                text: '柱状图',
+                subtext: ''
+            },
+            xAxis: {
+                data: [],
+                axisLabel: {
+                    inside: true,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                z: 10
+            },
+            yAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            legend,
+            grid,
+            dataZoom: [
+                {
+                    type: 'inside'
+                }
+            ],
+            series: [
+                {
+                    name:'直接访问',
+                    type:'bar',
+                    barWidth: '60%',
+                    data: []
+                }
+            ]
+        }
+    }
+
     render() {
         const {optionBar, optionPie, optionLine} = this.state
         const dataSource = [
@@ -239,6 +372,12 @@ class DashBoard extends React.Component {
                 age: 42,
                 address: '西湖区湖底公园1号',
             },
+            {
+                key: '3',
+                name: '胡彦祖',
+                age: 42,
+                address: '西湖区湖底公园1号',
+            }
         ];
         const columns = [
             {
@@ -260,36 +399,45 @@ class DashBoard extends React.Component {
 
         return (
             <Row gutter={16} className='person-flow-container'>
-                <Col span={14}>
-                    <Card bordered={false} hoverable style={{height: 462}}>
+                <Col span={16}>
+                    <Card bordered={false} hoverable style={{height: 662}}>
                         视频
                     </Card>
-                    <Card bordered={false} hoverable style={{height: 350}}>
+                    <Card bordered={false} hoverable style={{height: 300}}>
                         <Row>
                             <Col span={14}>
 
                             </Col>
                             <Col span={10}>
-                                <Table columns={columns} dataSource={dataSource}/>
+                                <Table columns={columns}
+                                       pagination={false}
+                                       dataSource={dataSource}/>
                             </Col>
                         </Row>
                     </Card>
                 </Col>
-                <Col span={10} className='charts-group'>
+                <Col span={8} className='charts-group'>
 
-                    <Card title='柱状图' style={{height: 265}}
+                    <Card title='柱状图' style={{height: 315}}
                           bordered={false}
                           hoverable>
-                        <AutoRefreshChart options={optionBar}/>
+                        <AutoRefreshChart options={optionBar} height='165px' width='100%'/>
                     </Card>
 
-                    <Card title='饼状图' style={{height: 265}}
+                    <Card title='饼状图' style={{height: 315}}
                           bordered={false}
                           hoverable>
-                        <AutoRefreshChart options={optionPie} height='200px'/>
+                        <Row>
+                            <Col span={12}>
+                                <AutoRefreshChart options={optionPie} width='180px' height='200px'/>
+                            </Col>
+                            <Col span={12}>
+                                <AutoRefreshChart options={optionPie} width='180px' height='200px'/>
+                            </Col>
+                        </Row>
                     </Card>
 
-                    <Card title='线形图' style={{height: 265}}
+                    <Card title='线形图' style={{height: 315}}
                           bordered={false}
                           hoverable>
                         <AutoRefreshChart options={optionLine} height='165px' width='100%'/>

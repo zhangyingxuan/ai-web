@@ -4,8 +4,9 @@
   height: 100%;
 
   .logo {
-    height: 32px;
-    background: #ffffff;
+    height: 64px;
+    background-image: url("../imgs/logo.svg");
+    background-size: 48px 64px;
     border-radius: 6px;
     margin: 16px;
   }
@@ -108,6 +109,19 @@
 .ant-menu-horizontal > .ant-menu-item,
 .ant-menu-horizontal > .ant-menu-submenu{
   border-bottom: 2px solid #1890ff;
+}
+
+.ant-layout .ant-layout-sider-collapsed .anticon {
+  font-size: 28px;
+}
+
+.ant-menu-inline-collapsed > .ant-menu-item, .ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item, .ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
+  padding: 0 25px !important;
+}
+
+.ant-menu-vertical > .ant-menu-item, .ant-menu-vertical-left > .ant-menu-item, .ant-menu-vertical-right > .ant-menu-item, .ant-menu-inline > .ant-menu-item, .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+  height: 60px;
+  line-height: 60px;
 }
 
 //美化webkit内核滚动条
