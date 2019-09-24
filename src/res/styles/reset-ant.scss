@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+.ant-layout {
+  height: 100%;
+
+  .logo {
+    height: 32px;
+    background: #ffffff;
+    border-radius: 6px;
+    margin: 16px;
+  }
+
+  .ant-layout-header {
+    background-color: #fff;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+  }
+
+  .ant-layout-sider,
+  .ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+    background-color: #4c7ee9;
+    //box-shadow: 0 234px 8px rgba(0, 0, 0, 0.45) inset;
+  }
+
+  .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    box-shadow: none;
+  }
+
+  .ant-menu-item:hover,
+  .ant-menu-item-selected {
+    background-color: #3967cb !important;
+  }
+
+  .ant-menu-dark .ant-menu-item,
+  .ant-menu-dark .ant-menu-item-group-title,
+  .ant-menu-dark .ant-menu-item > a,
+  .ant-menu-dark, .ant-menu-dark .ant-menu-sub{
+    color: #ffffff;
+  }
+
+  //重置样式
+  .ant-layout-content > div {
+    height: 100%;
+
+    .ant-tabs .ant-tabs-top-content, .ant-tabs .ant-tabs-bottom-content {
+      height: 100%;
+    }
+  }
+
+  .header__trigger {
+    color: #000;
+  }
+
+  .ant-layout-sider-collapsed {
+    .anticon {
+      font-size: 16px;
+      // margin-left: 8px;
+    }
+
+    .nav-text {
+      display: none;
+    }
+
+    .ant-menu-submenu-vertical > .ant-menu-submenu-title:after {
+      display: none;
+    }
+
+    .ant-menu-dark:not(.ant-menu-inline) .ant-menu-submenu-open {
+      color: inherit;
+    }
+  }
+
+  p {
+    margin: 10px 0 10px 0;
+  }
+}
+
+.gutter-example {
+  .ant-row {
+    //margin-left: 0 !important;
+    //margin-right: 0 !important;
+    > div {
+      background: transparent;
+      border: 0;
+    }
+  }
+}
+
+.gutter-box {
+  padding: 5px 0;
+}
+
+:global {
+  .ant-card-head-title {
+    font-size: 14px !important;
+  }
+}
+
+.ant-layout-content {
+  min-height: auto;
+  background-color: #ffffff;
+}
+
+.ant-tabs-bar {
+  margin: 0;
+}
+
+.ant-menu-horizontal > .ant-menu-item,
+.ant-menu-horizontal > .ant-menu-submenu{
+  border-bottom: 2px solid #1890ff;
+}
+
+//美化webkit内核滚动条
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #777;
+}
