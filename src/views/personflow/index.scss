@@ -14,11 +14,21 @@
   .charts-group {
   }
 
-  .pie-data {
+  .flex-row {
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
     justify-items: center;
-    height: 200px;
+    align-items: center;
+  }
+  .pie-data {
+    height: 55px;
+  }
+
+  .ellipsis-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    width: 220px;
   }
 }

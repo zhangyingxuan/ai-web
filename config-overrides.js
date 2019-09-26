@@ -13,12 +13,6 @@ const chalk = require('chalk');
 
 process.env.GENERATE_SOURCEMAP = "false";
 module.exports = override(
-    addLessLoader({
-        javascriptEnabled: true,
-        modifyVars: {
-            '@primary-color': '#24292e'
-        }
-    }),
     addWebpackAlias({
         ["@"]: path.resolve(__dirname, "src"),
     }),

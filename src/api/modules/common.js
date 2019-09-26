@@ -27,3 +27,12 @@ export function logout () {
     data: requestParam()
   })
 }
+
+// 退出
+export function executeShell (params) {
+  return request({
+    url: requestUrl('/shell/executeShell'),
+    method: 'post',
+    data: requestParam(params)
+  })
+}

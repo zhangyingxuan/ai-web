@@ -25,3 +25,10 @@ export function fetchBarData (id) {
     method: 'post',
   })
 }
+// 实时人数统计-前十条
+export function fetchTop10 (id) {
+  return request({
+    url: requestUrl('/passenger/topTen?cameraId='+ id),
+    method: 'post',
+  })
+}

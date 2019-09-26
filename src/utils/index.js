@@ -1,3 +1,5 @@
+import API from "../api";
+
 const CryptoJS = require("crypto-js");
 // 获取url的参数
 export const queryString = () => {
@@ -47,4 +49,17 @@ export function decryptByAES(ciphertext, key) {
         padding: CryptoJS.pad.Pkcs7
     });
     return decrypted.toString(CryptoJS.enc.Utf8);
+}
+
+export function changeVideoSource(sdkName, type) {
+    // person，hat，lg，wei，face
+    // video，rtsp
+    API.common.executeShell({
+        sdkName: sdkName,
+        type: type
+    }).then((res) => {
+    }).catch((err) => {
+    }).finally(() => {
+
+    })
 }

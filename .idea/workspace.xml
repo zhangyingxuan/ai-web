@@ -2,25 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa26d6db-9a0d-43c9-905f-6f59caeffe9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/widget/customVidio2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/modules/electronic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/personflow/ol.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/modules/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/modules/personflow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/requestUrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/requestUrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/HeaderCustom.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/HeaderCustom.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/widget/customCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/customCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/widget/customPageLoading.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/customPageLoading.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-overrides.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-overrides.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/styles/common.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/styles/common.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/styles/reset-ant.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/styles/reset-ant.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupProxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/modules/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/modules/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/modules/personflow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/modules/personflow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/echarts/PieChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/echarts/PieChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/widget/customVidio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/customVidio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/widget/customVidio2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config-overrides.js" beforeDir="false" afterPath="$PROJECT_DIR$/config-overrides.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/edge/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/edge/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/personflow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/personflow/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/personflow/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/personflow/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/widget" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views/personflow" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -43,11 +39,15 @@
     <property name="ts.external.directory.path" value="D:\IntelliJ IDEA 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\git\ai-web" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\git\ai-web\src\views\personflow" />
+      <recent name="D:\git\ai-web\src\api\modules" />
       <recent name="D:\git\ai-web\src\components\widget" />
       <recent name="D:\git\ai-web\src\res\imgs" />
       <recent name="D:\git\ai-web\public" />
-      <recent name="D:\git\ai-web\src\assets\common" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -72,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569333636228</updated>
-      <workItem from="1569333637918" duration="20183000" />
+      <workItem from="1569333637918" duration="32883000" />
     </task>
     <servers />
   </component>

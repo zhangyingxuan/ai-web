@@ -1,11 +1,10 @@
 import React from 'react'
-import {Radio, Card, Col, Row, Table, Tag} from "antd";
+import {Button, Card, Col, Row, Table, Tag} from "antd";
 import AutoRefreshChart from "../../components/echarts/AutoRefreshChart";
 import './index.scss'
 import Video from "../../components/widget/customVidio";
 import PieChart from '@/components/echarts/PieChart'
 import API from '../../api'
-import {changeVideoSource} from '@/utils'
 
 const xAxisCommonStyle = {
     type: 'time',
@@ -95,22 +94,20 @@ const lineStyleArr = [{
 }]
 
 class index extends React.Component {
+    componentDidMount() {
+    }
 
     constructor(props) {
         super(props);
         this.state = {
             optionBar: {},
+            optionPie: {},
             optionLine: {},
             tableData: [],
-            tableLoading: false,
-            videoUrl: "rtmp://106.13.139.118:1935/vod/car.mp4"
         }
     }
 
     componentWillMount() {
-        // 切花直播内容
-        changeVideoSource('person', 'rtsp')
-
         this.loadTop10()
         this.initChartOptions().then((res) => {
             this.loadPieData()
@@ -136,9 +133,6 @@ class index extends React.Component {
     }
 
     loadPieData() {
-        this.setState({
-            tableLoading: true
-        })
         API.personflow.fetPieData(1).then((res) => {
             console.log(res)
             const results = res.data
@@ -151,16 +145,24 @@ class index extends React.Component {
                     })
                 })
             }
+            // this.state.optionPie.series[0].data = data
+            // this.setState({})
+            const {optionPie} = this.state
             this.setState({
                 pieData: data,
+                optionPie: {
+                    ...optionPie,
+                    series: [{
+                        ...optionPie.series[0],
+                        data
+                    }]
+                },
                 currentPieData: data
             })
         }).catch((err) => {
             console.log(err)
         }).finally(() => {
-            this.setState({
-                tableLoading: false
-            })
+
         })
     }
 
@@ -255,9 +257,11 @@ class index extends React.Component {
                 {value: 0, name: '严重'},
             ]
             try {
+                const optionPie = this.getCommonOptions('当前人流密度分类占比', '', '当前人流密度分类占比', defaultPodData)
                 const optionLine = this.getLineOptions()
                 const optionBar = this.getBarOptions()
                 this.setState({
+                    optionPie,
                     optionLine,
                     optionBar
                 }, () => {
@@ -267,6 +271,70 @@ class index extends React.Component {
                 reject(false)
             }
         })
+    }
+
+    getCommonOptions(text, subtext, seriesName, data, radius = ['50%', '75%']) {
+        return {
+            color: ['#329DCE', '#FF9800', '#AA314D', '#FAD860', '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'],
+            // color: ['#329DCE', '#60C0DD', '#9BCA63', '#FAD860', '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'],
+            title: {
+                show: false,
+                text: text,
+                subtext: subtext,
+                x: 'center',
+                y: 'bottom',
+                textStyle: {
+                    align: 'center',
+                    baseline: 'middle',
+                    fontFamily: '微软雅黑',
+                    fontSize: 14,
+                    color: '#333',
+                    fontWeight: 'bolder'
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                // 相对位置，放置在容器正中间
+                position: ['5%', '40%'],
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            // legend: {
+            //   orient: 'vertical',
+            //   left: 'left',
+            //   data: ['0~2%', '2%~20%', '20%~50%', '50%~100%']
+            // },
+            series: [
+                {
+                    name: seriesName,
+                    type: 'pie',
+                    radius,
+                    center: ['50%', '50%'],
+                    data: data,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'inside',
+                            formatter: '{d}%',
+                            // 模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
+                            textStyle: {
+                                align: 'center',
+                                baseline: 'middle',
+                                fontFamily: '微软雅黑',
+                                fontSize: 13,
+                                fontWeight: 'bolder'
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        }
     }
 
     getLineOptions() {
@@ -357,20 +425,8 @@ class index extends React.Component {
         }
     }
 
-    handleRedioChange(e) {
-        if(e.target.value === '0') {
-            this.setState({
-                videoUrl: "rtmp://106.13.139.118:1935/vod/car.mp4"
-            })
-        } else {
-            this.setState({
-                videoUrl: "rtmp://106.13.139.118:1935/vod/flowcount.mp4"
-            })
-        }
-    }
-
     render() {
-        const {optionBar, pieData, optionLine, currentPieData, tableData, tableLoading, videoUrl} = this.state
+        const {optionBar, pieData, optionPie, optionLine, currentPieData, tableData} = this.state
         const columns = [
             {
                 title: '地址',
@@ -398,19 +454,10 @@ class index extends React.Component {
             <Row gutter={16} className='person-flow-container'>
                 <Col span={18}>
                     <Card bordered={false} hoverable className='video-container-card' style={{height: 978}}>
-                        <Video videoFileStream={videoUrl}/>
+                        <Video/>
                     </Card>
                 </Col>
                 <Col span={6} className='charts-group'>
-
-                    <Card style={{height: 85}}
-                          bordered={false}
-                          hoverable>
-                        <Radio.Group defaultValue="0" buttonStyle="solid" onChange={this.handleRedioChange.bind(this)}>
-                            <Radio.Button value="0">摄像头</Radio.Button>
-                            <Radio.Button value="1">播放视频</Radio.Button>
-                        </Radio.Group>
-                    </Card>
 
                     <Card style={{height: 213}}
                           bordered={false}
@@ -428,6 +475,7 @@ class index extends React.Component {
                                           title='当前人流密度分类占比'
                                           subtitle=''
                                           seriesName='当前人流密度分类占比'/>
+                                {/*<AutoRefreshChart options={optionPie} width='100px' height='80px'/>*/}
                             </Col>
                             <Col span={18}>
                                 <h3 style={{textAlign: 'center', fontWeight: 700}}>当前人流密度分类占比</h3>
@@ -448,7 +496,6 @@ class index extends React.Component {
                     <Card bordered={false} hoverable style={{height: 265}}>
                         <Table columns={columns}
                                size='middle'
-                               loading={tableLoading}
                                scroll={{y: 240}}
                                pagination={{pageSize: 3}}
                                dataSource={tableData}/>
@@ -463,6 +510,19 @@ class index extends React.Component {
                                           loopQuery={true}
                                           height='165px'
                                           width='100%'/>
+                    </Card>
+
+                    <Card style={{height: 85}}
+                          bordered={false}
+                          hoverable>
+                        <div className='flex-row'>
+                            <Button type="primary" shape="round" icon="download">
+                                摄像头
+                            </Button>
+                            <Button type="danger" shape="round" icon="download">
+                                播放视频
+                            </Button>
+                        </div>
                     </Card>
                 </Col>
             </Row>
