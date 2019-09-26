@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa26d6db-9a0d-43c9-905f-6f59caeffe9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/modules/electronic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/personflow/ol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/modules/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/modules/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/modules/personflow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/modules/personflow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/echarts/PieChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/echarts/PieChart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/widget/customVidio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/customVidio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/widget/customVidio2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-overrides.js" beforeDir="false" afterPath="$PROJECT_DIR$/config-overrides.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/edge/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/edge/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/personflow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/personflow/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/personflow/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/personflow/index.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +58,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569333636228</updated>
-      <workItem from="1569333637918" duration="32883000" />
+      <workItem from="1569333637918" duration="33069000" />
     </task>
     <servers />
   </component>

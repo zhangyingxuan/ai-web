@@ -175,7 +175,7 @@ class index extends React.Component {
 
 
         const {optionBar} = this.state
-        var dataAxis = ['点', '击', '柱', '子', '或', '者', '两'];
+        var dataAxis = ['1', '2', '3', '4', '5', '6', '7'];
         var data = [10, 52, 200, 334, 390, 330, 220];
         var yMax = 500;
         var dataShadow = [];
