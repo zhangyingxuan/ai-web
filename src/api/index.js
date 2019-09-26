@@ -3,7 +3,7 @@ import * as user from './modules/user'
 import * as role from './modules/role'
 import * as menu from './modules/menu'
 import * as log from './modules/log'
-import * as config from './modules/config'
+import * as config from './modules/personflow'
 import * as oss from './modules/oss'
 import * as schedule from './modules/schedule'
 import * as puser from './modules/puser'
@@ -11,6 +11,7 @@ import * as pusergroup from './modules/pusergroup'
 import * as pusergroupmemner from './modules/pusergroupmemner'
 import * as papp from './modules/papp'
 import * as palarmrule from './modules/palarmrule'
+import * as personflow from './modules/personflow'
 
 export default {
     common,     // 公共
@@ -25,5 +26,6 @@ export default {
     pusergroup, // 组管理
     pusergroupmemner, // 成员组管理
     papp, // 应用
+    personflow, // 应用
     palarmrule
 }

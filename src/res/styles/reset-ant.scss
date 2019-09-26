@@ -12,14 +12,14 @@
   }
 
   .ant-layout-header {
-    background-color: #fff;
+    background-color: #293C55;
     padding: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
   }
 
   .ant-layout-sider,
   .ant-menu-dark, .ant-menu-dark .ant-menu-sub {
-    background-color: #4c7ee9;
+    background-color: #0a0a0a;
     //box-shadow: 0 234px 8px rgba(0, 0, 0, 0.45) inset;
   }
 
@@ -29,7 +29,10 @@
 
   .ant-menu-item:hover,
   .ant-menu-item-selected {
-    background-color: #3967cb !important;
+    background-color: #36383e !important;
+    a {
+      color: #35b5ff !important;
+    }
   }
 
   .ant-menu-dark .ant-menu-item,
@@ -76,25 +79,15 @@
   }
 }
 
-.gutter-example {
-  .ant-row {
-    //margin-left: 0 !important;
-    //margin-right: 0 !important;
-    > div {
-      background: transparent;
-      border: 0;
-    }
-  }
+//card样式重置
+
+.ant-card, .ant-card-body {
+  //background-color: #0a0808;
 }
 
-.gutter-box {
-  padding: 5px 0;
-}
-
-:global {
-  .ant-card-head-title {
-    font-size: 14px !important;
-  }
+.ant-card-head{
+  //color: #fff;
+  //border-bottom: 1px solid #d6ea2e !important;
 }
 
 .ant-layout-content {

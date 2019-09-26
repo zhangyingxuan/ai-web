@@ -57,6 +57,7 @@ class MyLayout extends React.Component {
                                   collapsed={this.state.collapsed}
                                   user={this.state.user || {}}/>
                     <Content style={{overflow: 'initial', flex: '1 1 0', backgroundColor: '#F0F2F5'}}>
+                        {/*, backgroundColor: '#27272F'*/}
                         <Routes menus={routes}/>
                     </Content>
                     {/*<Footer style={{textAlign: 'center'}}>*/}

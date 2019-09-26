@@ -1,14 +1,20 @@
-const proxy = require('http-proxy-middleware');
-module.exports = function (app) {
-	app.use(proxy('/api/*', {
-		target: "http://localhost:3030/",
-		// target: "http://localhost:3030/",
-		pathRewrite: {'^/api': ''},
-		changeOrigin: true
-	}));
-	app.use(proxy('/proxyApi/*', {
-		target: "http://alarm-center.xtest1.mslo/api/v1/",
-		pathRewrite: {'^/proxyApi': ''},
-		// changeOrigin: true
+const proxy = require("http-proxy-middleware");
+module.exports = function(app) {
+	app.use(
+		proxy("/api", {
+			target: "http://106.13.139.118:8088",
+			changeOrigin: true, // needed for virtual hosted sites
+			ws: true, // proxy websockets
+			pathRewrite: {
+				"^/api": ""
+			}
+		})
+	);
+
+	app.use(proxy('/web', {
+		target: "http://106.13.139.118:8088",
+		// pathRewrite: {'^/proxyApi': ''},
+		changeOrigin: true,
+		ws: true
 	}));
 };

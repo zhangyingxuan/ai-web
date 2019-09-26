@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 // if (process.env.NODE_ENV !== 'production') {
-    require('./mock')
+//     require('./mock')
 // }
 
 ReactDOM.render(<App />, document.getElementById('root'));

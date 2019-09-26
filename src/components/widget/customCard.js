@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./customPageLoading.scss"
 
-class customPageLoading extends Component {
+class customCard extends Component {
     state = {
     }
     render() {
@@ -9,7 +9,7 @@ class customPageLoading extends Component {
         return (
             <div className="detail-monitor-status StatusCircle__card--ys1gr">
                 < img className="StatusCircle__cardImg--2CRny"
-                      src={require('@/assets/common/banner-icon-1.svg')} alt='img'/>
+                      src={require('../../assets/common/banner-icon-1.svg')} alt='img'/>
                 <div className="StatusCircle__chart--T-Rca">
                 </div>
                 <div className="StatusCircle__status--3UJij">
@@ -22,4 +22,4 @@ class customPageLoading extends Component {
     }
 }
 
-export default customPageLoading;
+export default customCard;

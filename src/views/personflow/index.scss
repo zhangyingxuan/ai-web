@@ -1,9 +1,24 @@
 @charset "UTF-8";
 .person-flow-container {
   padding: 0 16px;
+
+  .video-container-card {
+    .ant-card-body {
+      background-color: #000;
+    }
+  }
+
   .ant-card {
     margin-top: 16px;
   }
   .charts-group {
+  }
+
+  .pie-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-items: center;
+    height: 200px;
   }
 }

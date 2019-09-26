@@ -32,32 +32,31 @@ instance.interceptors.request.use(function (config) {
 //添加一个响应拦截器
 instance.interceptors.response.use(function (response) {
     // console.log(response)
-
-    // 1.成功
-    if (response.data && response.data.code === globalCode.success) {
-        return response;
-    }
-
-    // 2.session过期handleClickMenuItem
-    if (!response.data && response.data.code === globalCode.timeout) {
-        message.error('会话过期，请重新登录');
-        createHashHistory().push('/login');
-        // 定义一个messagecode在后面会用到
-        return Promise.reject({
-            messageCode: 'timeout'
-        })
-    }
-
-    // 3.11111111 系统异常、网络异常
-    if (response.data && response.data.code === globalCode.busyCode) {
-        message.error(response.data.message);
-        return Promise.reject({
-            messageCode: 'netError'
-        })
-    }
+    // // 1.成功
+    // if (response.data && response.data.code === globalCode.success) {
+    //     return response;
+    // }
+    //
+    // // 2.session过期handleClickMenuItem
+    // if (!response.data && response.data.code === globalCode.timeout) {
+    //     message.error('会话过期，请重新登录');
+    //     createHashHistory().push('/login');
+    //     // 定义一个messagecode在后面会用到
+    //     return Promise.reject({
+    //         messageCode: 'timeout'
+    //     })
+    // }
+    //
+    // // 3.11111111 系统异常、网络异常
+    // if (response.data && response.data.code === globalCode.busyCode) {
+    //     message.error(response.data.message);
+    //     return Promise.reject({
+    //         messageCode: 'netError'
+    //     })
+    // }
 
     // 3.其他失败，比如校验不通过等
-    return Promise.reject(response.data);
+    return Promise.resolve(response.data);
 }, function () {
     message.error('系统异常，请稍后重试！');
     // 4.系统错误，比如500、404等

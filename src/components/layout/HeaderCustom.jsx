@@ -21,14 +21,14 @@ class HeaderCustom extends Component {
 
     render() {
         return (
-            <Header className="custom-theme header">
+            <Header className="custom-header">
                 <Row>
                     <Col span={1}>
-                        <Icon
-                            className="header__trigger custom-trigger"
-                            type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-                            onClick={this.props.toggle}
-                        />
+                        {/*<Icon*/}
+                        {/*    className="header__trigger custom-trigger"*/}
+                        {/*    type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}*/}
+                        {/*    onClick={this.props.toggle}*/}
+                        {/*/>*/}
                     </Col>
                     <Col span={10} style={{fontSize: '32px', color: '#FF9800'}}>
                         AI视觉智能分析平台

@@ -1,8 +1,9 @@
 import React from 'react'
-import {Card, Col, Row, Table} from "antd";
+import {Card, Col, Row, Table, Tag} from "antd";
 import AutoRefreshChart from "../../components/echarts/AutoRefreshChart";
 import './index.scss'
-
+import Video from "../../components/widget/customVidio2";
+import API from '../../api'
 
 const xAxisCommonStyle = {
     type: 'time',
@@ -90,7 +91,8 @@ const lineStyleArr = [{
         }
     }
 }]
-class DashBoard extends React.Component {
+
+class index extends React.Component {
     componentDidMount() {
     }
 
@@ -105,15 +107,57 @@ class DashBoard extends React.Component {
 
     componentWillMount() {
         this.initChartOptions().then((res) => {
-            this.loadData()
+            this.loadPieData()
+            this.loadLineData()
             this.loadBarData()
         }).catch(() => {
 
         })
     }
 
+    loadPieData() {
+        API.personflow.fetPieData(1).then((res) => {
+            console.log(res)
+            const results = res.data
+            let data = []
+            if (results && Array.isArray(results) && results.length > 0) {
+                results.map((result) => {
+                    data.push({
+                        value: result.warning_times || 0,
+                        name: result.cameraStatus
+                    })
+                })
+            }
+            // this.state.optionPie.series[0].data = data
+            // this.setState({})
+            const {optionPie} = this.state
+            this.setState({
+                optionPie: {
+                    ...optionPie,
+                    series: [{
+                        ...optionPie.series[0],
+                        data
+                    }]
+                },
+                currentPieData: data
+            })
+        }).catch((err) => {
+            console.log(err)
+        }).finally(() => {
+
+        })
+    }
 
     loadBarData() {
+        API.personflow.fetchBarData(1).then((res) => {
+
+        }).catch((err) => {
+
+        }).finally(() => {
+
+        })
+
+
         const {optionBar} = this.state
         var dataAxis = ['点', '击', '柱', '子', '或', '者', '两'];
         var data = [10, 52, 200, 334, 390, 330, 220];
@@ -137,8 +181,19 @@ class DashBoard extends React.Component {
         })
     }
 
+    /**
+     *  获取线形图数据
+     */
+    loadLineData() {
+        API.personflow.fetchCurrentPerson(1).then((res) => {
+            console.log(res)
+        }).catch((err) => {
 
-    loadData() {
+        }).finally(() => {
+
+        })
+
+
         const {optionLine} = this.state
         let dataSetSource = []
         let series = []
@@ -179,10 +234,9 @@ class DashBoard extends React.Component {
     initChartOptions() {
         return new Promise((resolve, reject) => {
             const defaultPodData = [
-                {value: 0, name: '0~2%'},
-                {value: 0, name: '2~20%'},
-                {value: 0, name: '20~50%'},
-                {value: 0, name: '50~100%'},
+                {value: 1, name: '轻微'},
+                {value: 0, name: '中等'},
+                {value: 0, name: '严重'},
             ]
             try {
                 const optionPie = this.getCommonOptions('使用情况', 'cpu', '使用率', defaultPodData)
@@ -203,7 +257,8 @@ class DashBoard extends React.Component {
 
     getCommonOptions(text, subtext, seriesName, data, radius = ['30%', '55%']) {
         return {
-            color: ['#329DCE', '#60C0DD', '#9BCA63', '#FAD860', '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'],
+            color: ['#329DCE', '#FF9800', '#AA314D', '#FAD860', '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'],
+            // color: ['#329DCE', '#60C0DD', '#9BCA63', '#FAD860', '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'],
             title: {
                 show: false,
                 text: text,
@@ -305,7 +360,7 @@ class DashBoard extends React.Component {
 
     getBarOptions() {
         return {
-            color: '#9BCA63',
+            color: '#71A9C8',
             title: {
                 text: '柱状图',
                 subtext: ''
@@ -358,7 +413,7 @@ class DashBoard extends React.Component {
     }
 
     render() {
-        const {optionBar, optionPie, optionLine} = this.state
+        const {optionBar, optionPie, optionLine, currentPieData} = this.state
         const dataSource = [
             {
                 key: '1',
@@ -396,27 +451,31 @@ class DashBoard extends React.Component {
                 key: 'address',
             },
         ];
+        const tagColors = ['#329DCE', '#FF9800', '#AA314D']
+        // const tagColors = ['#2db7f5', '#f50' , '']
 
         return (
             <Row gutter={16} className='person-flow-container'>
-                <Col span={16}>
-                    <Card bordered={false} hoverable style={{height: 662}}>
-                        视频
+                <Col span={18}>
+                    <Card bordered={false} hoverable className='video-container-card' style={{height: 647}}>
+                        <Video/>
                     </Card>
-                    <Card bordered={false} hoverable style={{height: 300}}>
-                        <Row>
-                            <Col span={14}>
-
-                            </Col>
-                            <Col span={10}>
+                    <Row gutter={16}>
+                        <Col span={14}>
+                            <Card bordered={false} hoverable style={{height: 315}}>
+                                <AutoRefreshChart options={optionLine} height='265px' width='100%'/>
+                            </Card>
+                        </Col>
+                        <Col span={10}>
+                            <Card bordered={false} hoverable style={{height: 315}}>
                                 <Table columns={columns}
                                        pagination={false}
                                        dataSource={dataSource}/>
-                            </Col>
-                        </Row>
-                    </Card>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Col>
-                <Col span={8} className='charts-group'>
+                <Col span={6} className='charts-group'>
 
                     <Card title='柱状图' style={{height: 315}}
                           bordered={false}
@@ -429,10 +488,20 @@ class DashBoard extends React.Component {
                           hoverable>
                         <Row>
                             <Col span={12}>
+                                {/*<CustomCard/>*/}
                                 <AutoRefreshChart options={optionPie} width='180px' height='200px'/>
                             </Col>
                             <Col span={12}>
-                                <AutoRefreshChart options={optionPie} width='180px' height='200px'/>
+                                <div className='pie-data'>
+                                {
+                                    currentPieData && Array.isArray(currentPieData) && (currentPieData.map((pieData, index) => {
+                                        return <div>
+                                            <Tag color={tagColors[index]}>{pieData.name}</Tag>
+                                            <span style={{fontSize: 18, fontWeight: 500}}>{pieData.value}</span>
+                                        </div>
+                                    }))
+                                }
+                                </div>
                             </Col>
                         </Row>
                     </Card>
@@ -448,4 +517,4 @@ class DashBoard extends React.Component {
     }
 }
 
-export default DashBoard
+export default index
