@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa26d6db-9a0d-43c9-905f-6f59caeffe9f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/widget/customVidio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/customVidio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/edge/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/edge/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/face/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/face/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/jobs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/jobs/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/personflow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/personflow/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/safety/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/safety/index.js" afterDir="false" />
     </list>
@@ -20,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/modules" />
+    <property name="last_opened_file_path" value="E:/qf/827516789/FileRecv/ai-web1" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -61,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569333636228</updated>
-      <workItem from="1569333637918" duration="41458000" />
+      <workItem from="1569333637918" duration="44368000" />
     </task>
     <servers />
   </component>

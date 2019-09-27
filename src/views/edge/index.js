@@ -175,10 +175,10 @@ class index extends React.Component {
                 <Col span={18}>
                     <Card bordered={false}
                           actions={[
-                              <Button type="primary" shape="round" onChange={this.handleRedioChange.bind(this, 'rtmp')}>
+                              <Button type="primary" shape="round" onClick={this.handleRedioChange.bind(this, 'rtmp')}>
                                   <Icon type="step-backward" />摄像头
                               </Button>,
-                              <Button type="primary" shape="round" onChange={this.handleRedioChange.bind(this, 'video')}>
+                              <Button type="primary" shape="round" onClick={this.handleRedioChange.bind(this, 'video')}>
                                   播放视频<Icon type="step-forward" />
                               </Button>
                           ]}
