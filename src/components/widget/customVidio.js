@@ -26,6 +26,7 @@ class Video extends React.Component {
     }
 
     componentWillUnmount() {
+        console.log('componentWillUnmountcomponentWillUnmountcomponentWillUnmountcomponentWillUnmountcomponentWillUnmount')
         if (this.player) {
             this.closePlayer()
         }
@@ -81,7 +82,7 @@ class Video extends React.Component {
 
 Video.defaultProps = {
     width: '1298px',
-    height: '938px',
+    height: '881px',
     videoFileStream: "rtmp://106.13.139.118:1935/vod/car.mp4", // 实时视频流地址
 }
 

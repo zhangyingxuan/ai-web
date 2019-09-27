@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Col, Radio, Row, Table, Tag} from "antd";
+import {Button, Card, Col, Icon, Radio, Row, Table, Tag} from "antd";
 import './index.scss'
 import Video from "../../components/widget/customVidio";
 import PieChart from '@/components/echarts/PieChart'
@@ -128,9 +128,10 @@ class index extends React.Component {
         })
     }
 
-    handleRedioChange(e) {
-        changeVideoSource(pageName, e.target.value)
-        if(e.target.value === 'rtmp') {
+    handleRedioChange(value) {
+        changeVideoSource(pageName, value)
+        if(value === 'rtmp') {
+        // if(e.target.value === 'rtmp') {
             this.setState({
                 videoUrl: "rtmp://192.168.1.101:1935/live/1"
             })
@@ -170,20 +171,31 @@ class index extends React.Component {
         return (
             <Row gutter={16} className='person-flow-container container-content'>
                 <Col span={18}>
-                    <Card bordered={false} hoverable className='video-container-card' style={{height: 978}}>
+                    <Card bordered={false}
+                          hoverable
+                          className='video-container-card'
+                          style={{height: 978}}
+                          actions={[
+                              <Button type="primary" shape="round" onChange={this.handleRedioChange.bind(this, 'rtmp')}>
+                                  <Icon type="step-backward" />摄像头
+                              </Button>,
+                              <Button type="primary" shape="round" onChange={this.handleRedioChange.bind(this, 'video')}>
+                                  播放视频<Icon type="step-forward" />
+                              </Button>
+                          ]}>
                         <Video videoFileStream={videoUrl}/>
                     </Card>
                 </Col>
                 <Col span={6} className='charts-group'>
 
-                    <Card style={{height: 85}}
-                          bordered={false}
-                          hoverable>
-                        <Radio.Group defaultValue="rtmp" buttonStyle="solid" onChange={this.handleRedioChange.bind(this)}>
-                            <Radio.Button value="rtmp">摄像头</Radio.Button>
-                            <Radio.Button value="video">播放视频</Radio.Button>
-                        </Radio.Group>
-                    </Card>
+                    {/*<Card style={{height: 85}}*/}
+                    {/*      bordered={false}*/}
+                    {/*      hoverable>*/}
+                    {/*    <Radio.Group defaultValue="rtmp" buttonStyle="solid" onChange={this.handleRedioChange.bind(this)}>*/}
+                    {/*        <Radio.Button value="rtmp">摄像头</Radio.Button>*/}
+                    {/*        <Radio.Button value="video">播放视频</Radio.Button>*/}
+                    {/*    </Radio.Group>*/}
+                    {/*</Card>*/}
 
                     <Card style={{height: 213}}
                           bordered={false}
@@ -225,12 +237,12 @@ class index extends React.Component {
                         </Row>
                     </Card>
 
-                    <Card bordered={false} hoverable style={{height: 265}}>
+                    <Card bordered={false} hoverable style={{height: 380}}>
                         <Table columns={columns}
                                size='middle'
                                loading={tableLoading}
                                scroll={{y: 240}}
-                               pagination={{pageSize: 3}}
+                               pagination={{pageSize: 5}}
                                dataSource={tableData}/>
                     </Card>
 
