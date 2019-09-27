@@ -5,7 +5,7 @@ import PieChart from '@/components/echarts/PieChart'
 import LineChart from '@/components/echarts/LineChart'
 import BarChart from '@/components/echarts/BarChart'
 import API from '../../api'
-import {changeVideoSource} from '@/utils'
+import {changeVideoSource, getRandomNumberByRange} from '@/utils'
 
 const pageName = 'hat'
 class index extends React.Component {
@@ -83,20 +83,18 @@ class index extends React.Component {
         }).catch((err) => {
 
         }).finally(() => {
-            const {optionBar} = this.state
-            var dataAxis = ['1', '2', '3', '4', '5', '6', '7'];
-            var data = [10, 52, 200, 334, 390, 330, 220];
-            var yMax = 500;
-            var dataShadow = [];
+        })
 
-            for (var i = 0; i < data.length; i++) {
-                dataShadow.push(yMax);
-            }
+        var dataAxis = ['1', '2', '3', '4', '5', '6', '7'];
+        var data = [];
+        const dataLen = 10
+        for(let i = 0; i < dataLen; i++) {
+            data.push(getRandomNumberByRange(10, 50))
+        }
 
-            this.setState({
-                barData: data,
-                barDataAxis: dataAxis
-            })
+        this.setState({
+            barData: data,
+            barDataAxis: dataAxis
         })
     }
 
@@ -116,12 +114,12 @@ class index extends React.Component {
         var base = +new Date(1968, 9, 3);
         var oneDay = 24 * 3600 * 1000;
         var date = [];
-        var data = [Math.random() * 300];
+        var data = [getRandomNumberByRange(0, 5)];
 
-        for (var i = 1; i < 20000; i++) {
+        for (var i = 1; i < 50; i++) {
             var now = new Date(base += oneDay);
             date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
-            data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+            data.push(getRandomNumberByRange(0, 5));
         }
         data.unshift('线形图')
         lineDataSetSource.push(date, data)
@@ -149,21 +147,14 @@ class index extends React.Component {
         const {pieData, barData, barDataAxis, lineDataSetSource, currentPieData, tableData, tableLoading, videoUrl} = this.state
         const columns = [
             {
-                title: '地址',
-                dataIndex: 'address',
-                key: 'address',
-                width: 220,
-                render: (text) => <span title={text} className='ellipsis-text'>{text}</span>
+                title: '设备ID',
+                dataIndex: 'cameraId',
+                key: 'cameraId',
             },
             {
-                title: '人数',
-                dataIndex: 'person_count',
-                key: 'age',
-            },
-            {
-                title: '时间',
-                dataIndex: 'timestamps',
-                key: 'timestamps',
+                title: '告警时间',
+                dataIndex: 'warningTime',
+                key: 'warningTime',
                 render: (text) => text ? text.split(" ")[0] : ''
             },
         ];
@@ -203,11 +194,14 @@ class index extends React.Component {
 
                         <BarChart dataAxis={barDataAxis}
                                   data={barData}
-                                  title='当前人流密度分类占比'
+                                  title='前一天安全帽佩戴报警次数'
                                   subtitle=''
                                   height='165px'
                                   width='100%'
-                                  seriesName='当前人流密度分类占比'/>
+                                  timeInterval={60}
+                                  query={this.loadBarData.bind(this)}
+                                  loopQuery={true}
+                                  seriesName='前一天安全帽佩戴报警次数'/>
                     </Card>
 
                     <Card style={{height: 135}}
@@ -217,9 +211,9 @@ class index extends React.Component {
                             <Col span={6}>
                                 {/*<CustomCard/>*/}
                                 <PieChart data={pieData}
-                                          title='当前人流密度分类占比'
+                                          title='安全帽报警次数占比'
                                           subtitle=''
-                                          seriesName='当前人流密度分类占比'/>
+                                          seriesName='安全帽报警次数占比'/>
                             </Col>
                             <Col span={18}>
                                 <h3 style={{textAlign: 'center', fontWeight: 700}}>当前人流密度分类占比</h3>
@@ -243,7 +237,7 @@ class index extends React.Component {
                                size='middle'
                                loading={tableLoading}
                                scroll={{y: 240}}
-                               pagination={{pageSize: 3}}
+                               pagination={{pageSize: 5}}
                                dataSource={tableData}/>
                     </Card>
 
@@ -252,9 +246,9 @@ class index extends React.Component {
                           hoverable>
 
                         <LineChart data={lineDataSetSource}
-                                   title='当前人流密度分类占比'
+                                   title='当前安全帽佩戴报警次数'
                                    subtitle=''
-                                   seriesName='当前人流密度分类占比'
+                                   seriesName='当前安全帽佩戴报警次数'
                                    timeInterval={30}
                                    query={this.loadLineData.bind(this)}
                                    loopQuery={true}

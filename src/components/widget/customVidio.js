@@ -26,7 +26,7 @@ class Video extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmountcomponentWillUnmountcomponentWillUnmountcomponentWillUnmountcomponentWillUnmount')
+        console.log('componentWillUnmount Video')
         if (this.player) {
             this.closePlayer()
         }
@@ -39,6 +39,7 @@ class Video extends React.Component {
         const options = {
             width,
             height,
+            // aspectRatio: '16:8',
             controls: 'controls',
             preload: "auto",
             autoPlay: 'autoPlay',

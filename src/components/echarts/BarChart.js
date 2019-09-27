@@ -40,12 +40,12 @@ class BarChart extends React.PureComponent {
 		let series = this.state.options.series[0]
 		series.data = data
 		this.setState({
-			optionBar: {
+			options: {
 				...options,
-				xAxis: {
-					...options.xAxis,
-					data: dataAxis
-				},
+				// xAxis: {
+				// 	...options.xAxis,
+				// 	data: dataAxis
+				// },
 			}
 		})
 	}

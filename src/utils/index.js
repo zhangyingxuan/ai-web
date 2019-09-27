@@ -63,3 +63,7 @@ export function changeVideoSource(sdkName, type) {
 
     })
 }
+
+export function getRandomNumberByRange(start, end) {
+    return Math.floor(Math.random() * (end - start) + start)
+}
