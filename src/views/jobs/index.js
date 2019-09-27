@@ -3,7 +3,7 @@ import {Button, Card, Icon} from "antd";
 import Video from "../../components/widget/customVidio";
 import {changeVideoSource} from '@/utils'
 
-const pageName = 'jobs'
+const pageName = 'lg'
 
 class index extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class index extends React.Component {
             optionLine: {},
             tableData: [],
             tableLoading: false,
-            videoUrl: "rtmp://192.168.1.101:1935/live/5"
+            videoUrl: "rtmp://192.168.1.101:1935/live/7"
         }
     }
 

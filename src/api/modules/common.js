@@ -1,6 +1,7 @@
 import request from '../request'
 import requestUrl from '../requestUrl'
 import requestParam from '../requestParam'
+import qs from 'qs'
 
 // 获取验证码
 export function captcha (uuid) {
@@ -33,6 +34,14 @@ export function executeShell (params) {
   return request({
     url: requestUrl('/shell/executeShell'),
     method: 'post',
-    data: requestParam(params)
+    // params: requestParam(params, 'post'),
+    // data: params,
+    data: qs.stringify(params),
+    // data: requestParam(params),
+    headers:{
+      'Content-type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json; charset=utf-8',
+      // 'Content-type': 'multipart/form-data'
+    },
   })
 }

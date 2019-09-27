@@ -17,7 +17,7 @@ class index extends React.Component {
             optionLine: {},
             tableData: [],
             tableLoading: false,
-            videoUrl: "rtmp://192.168.1.101:1935/live/5"
+            videoUrl: "rtmp://192.168.1.101:1935/live/9"
         }
     }
 
@@ -30,11 +30,11 @@ class index extends React.Component {
         changeVideoSource(pageName, value)
         if (value === 'rtmp') {
             this.setState({
-                videoUrl: "rtmp://192.168.1.101:1935/live/5"
+                videoUrl: "rtmp://192.168.1.101:1935/live/9"
             })
         } else {
             this.setState({
-                videoUrl: "rtmp://192.168.1.101:1935/live/6"
+                videoUrl: "rtmp://192.168.1.101:1935/live/9"
             })
         }
     }
