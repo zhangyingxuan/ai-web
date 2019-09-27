@@ -2,7 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa26d6db-9a0d-43c9-905f-6f59caeffe9f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/modules/hat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/modules/jobs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/echarts/LineChart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/face/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/modules/electronic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/modules/electronic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/requestUrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/requestUrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/echarts/BarChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/echarts/BarChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/HeaderCustom.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/HeaderCustom.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/SiderCustom.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/SiderCustom.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/styles/common.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/styles/common.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/styles/reset-ant.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/styles/reset-ant.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupProxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/car/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/edge/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/edge/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/jobs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/jobs/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/personflow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/personflow/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/personflow/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/personflow/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/safety/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/safety/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +38,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views/personflow" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/modules" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -29,11 +50,11 @@
       <recent name="D:\git\ai-web" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\git\ai-web\src\views\personflow" />
       <recent name="D:\git\ai-web\src\api\modules" />
+      <recent name="D:\git\ai-web\src\components\echarts" />
+      <recent name="D:\git\ai-web\src\views\personflow" />
       <recent name="D:\git\ai-web\src\components\widget" />
       <recent name="D:\git\ai-web\src\res\imgs" />
-      <recent name="D:\git\ai-web\public" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -58,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569333636228</updated>
-      <workItem from="1569333637918" duration="33069000" />
+      <workItem from="1569333637918" duration="40922000" />
     </task>
     <servers />
   </component>

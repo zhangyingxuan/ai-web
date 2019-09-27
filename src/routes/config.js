@@ -13,8 +13,8 @@ export default {
         {id: 1, path: '/app/personflow', title: '人流监测', icon: 'user', component: loadingFuc(() => import('../views/personflow/index.js')), permissions: 'save;list;update'},
         {id: 2, path: '/app/edge', title: '边缘监测', icon: 'border-outer', component: loadingFuc(() => import('../views/edge/index.js')), permissions: 'save;list;update'},
         {id: 3, path: '/app/safety', title: '脱帽监测', icon: 'safety', component: loadingFuc(() => import('../views/safety/index.js')), permissions: 'save;list;update'},
-        {id: 4, path: '/app/jobs', title: '岗位监测', icon: 'smile', component: loadingFuc(() => import('../views/jobs/index.js')), permissions: 'save;list;update'},
-        {id: 5, path: '/app/car', title: '人脸监测', icon: 'car', component: loadingFuc(() => import('../views/car/index.js')), permissions: 'save;list;update'},
+        {id: 4, path: '/app/jobs', title: '岗位监测', icon: 'desktop', component: loadingFuc(() => import('../views/jobs/index.js')), permissions: 'save;list;update'},
+        {id: 5, path: '/app/car', title: '人脸识别', icon: 'smile', component: loadingFuc(() => import('../views/face/index.js')), permissions: 'save;list;update'},
         // {
         //     id: 2,
         //     path: '/settings', title: '系统设置', icon: 'safety',permissions: 'save;list;update',

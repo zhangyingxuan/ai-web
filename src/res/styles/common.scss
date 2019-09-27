@@ -63,3 +63,41 @@
   //background-color: #27272F !important;
   //color: #fff;
 }
+
+/**
+页面通用设置
+ */
+.container-content {
+  padding: 0 16px;
+  margin: 0 !important;
+
+  .video-container-card {
+    .ant-card-body {
+      background-color: #000;
+    }
+  }
+
+  .ant-card {
+    margin-top: 16px;
+  }
+  .charts-group {
+  }
+
+  .flex-row {
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+  }
+  .pie-data {
+    height: 55px;
+  }
+
+  .ellipsis-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    width: 220px;
+  }
+}

@@ -49,13 +49,13 @@ class MyLayout extends React.Component {
     render() {
         return (
             <Layout>
-                <SiderCustom collapsed={this.state.collapsed}
-                             menus={this.state.menus}/>
-                <Layout style={{flexDirection: 'column'}}>
-                    <HeaderCustom toggle={this.toggle}
-                                  pageRoutes={this.state.pageRoutes}
-                                  collapsed={this.state.collapsed}
-                                  user={this.state.user || {}}/>
+                <HeaderCustom toggle={this.toggle}
+                              pageRoutes={this.state.pageRoutes}
+                              collapsed={this.state.collapsed}
+                              user={this.state.user || {}}/>
+                <Layout >
+                    <SiderCustom collapsed={this.state.collapsed}
+                                 menus={this.state.menus}/>
                     <Content style={{overflow: 'initial', flex: '1 1 0', backgroundColor: '#F0F2F5'}}>
                         {/*, backgroundColor: '#27272F'*/}
                         <Routes menus={routes}/>

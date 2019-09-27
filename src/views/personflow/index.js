@@ -1,124 +1,40 @@
 import React from 'react'
-import {Radio, Card, Col, Row, Table, Tag} from "antd";
-import AutoRefreshChart from "../../components/echarts/AutoRefreshChart";
+import {Card, Col, Radio, Row, Table, Tag} from "antd";
 import './index.scss'
 import Video from "../../components/widget/customVidio";
 import PieChart from '@/components/echarts/PieChart'
+import LineChart from '@/components/echarts/LineChart'
+import BarChart from '@/components/echarts/BarChart'
 import API from '../../api'
 import {changeVideoSource} from '@/utils'
 
-const xAxisCommonStyle = {
-    type: 'time',
-    gridIndex: 0,
-    axisLine: {
-        lineStyle: {
-            color: '#ABB4BE', // x轴的颜色
-            width: 1// 轴线的宽度
-        }
-    },
-    boundaryGap: ['0', '0'],
-    min: 'dataMin',
-    max: 'dataMax',
-    interval: 3 * 60 * 1000,
-    axisLabel: {
-        color: '#8591A5',
-        fontSize: 12
-    }
-    // minInterval: 300 * 1000,
-    // maxInterval: 300 * 1000
-}
-
-const yAxisCommonStyle = {
-    show: true,
-    axisLine: {
-        lineStyle: {
-            color: '#ABB4BE', // x轴的颜色
-            width: 1// 轴线的宽度
-        }
-    },
-    boundaryGap: ['0', '0'],
-    axisLabel: {
-        color: '#8591A5',
-        fontSize: 12
-    }
-    // name: 'Mi'
-}
-
-const titleCommonStyle = {
-    color: '#242E42',
-    fontWeight: '600',
-    fontSize: '16'
-}
-
-const grid = {
-    left: '2%',
-    right: '2%',
-    bottom: '3%',
-    containLabel: true
-}
-
-const legend = {
-    right: '2%',
-    top: '10%'
-}
-
-const lineStyleArr = [{
-    normal: {
-        color: '#3485B0',
-        // 折线点的颜色
-        lineStyle: {
-            color: '#3485B0',
-            width: 1
-            // 折线的颜色
-        }
-    }
-}, {
-    normal: {
-        color: '#5FC091',
-        // 折线点的颜色
-        lineStyle: {
-            color: '#5FC091',
-            width: 1
-            // 折线的颜色
-        }
-    }
-}, {
-    normal: {
-        color: '#DFAF4F',
-        // 折线点的颜色
-        lineStyle: {
-            color: '#DFAF4F',
-            width: 1
-            // 折线的颜色
-        }
-    }
-}]
-
+const pageName = 'person'
 class index extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            barData: {},
+            barDataAxis: {},
+            pieData: {},
+            lineDataSetSource: {},
             optionBar: {},
             optionLine: {},
             tableData: [],
             tableLoading: false,
-            videoUrl: "rtmp://106.13.139.118:1935/vod/car.mp4"
+            videoUrl: "rtmp://192.168.1.101:1935/live/1"
+            // videoUrl: "rtmp://106.13.139.118:1935/vod/car.mp4"
         }
     }
 
     componentWillMount() {
         // 切花直播内容
-        changeVideoSource('person', 'rtsp')
+        changeVideoSource(pageName, 'rtsp')
 
         this.loadTop10()
-        this.initChartOptions().then((res) => {
-            this.loadPieData()
-            this.loadLineData()
-            this.loadBarData()
-        }).catch(() => {
-
-        })
+        this.loadPieData()
+        this.loadBarData()
+        this.loadLineData()
     }
 
     loadTop10() {
@@ -166,34 +82,18 @@ class index extends React.Component {
 
     loadBarData() {
         API.personflow.fetchBarData(1).then((res) => {
+            var dataAxis = ['1', '2', '3', '4', '5', '6', '7'];
+            var data = [10, 52, 200, 334, 390, 330, 220];
+            var yMax = 500;
 
+            this.setState({
+                barData: data,
+                barDataAxis: dataAxis
+            })
         }).catch((err) => {
 
         }).finally(() => {
 
-        })
-
-
-        const {optionBar} = this.state
-        var dataAxis = ['1', '2', '3', '4', '5', '6', '7'];
-        var data = [10, 52, 200, 334, 390, 330, 220];
-        var yMax = 500;
-        var dataShadow = [];
-
-        for (var i = 0; i < data.length; i++) {
-            dataShadow.push(yMax);
-        }
-
-        let series = this.state.optionBar.series[0]
-        series.data = data
-        this.setState({
-            optionBar: {
-                ...optionBar,
-                xAxis: {
-                    ...optionBar.xAxis,
-                    data: dataAxis
-                },
-            }
         })
     }
 
@@ -209,11 +109,7 @@ class index extends React.Component {
 
         })
 
-
-        const {optionLine} = this.state
-        let dataSetSource = []
-        let series = []
-
+        let lineDataSetSource = []
         var base = +new Date(1968, 9, 3);
         var oneDay = 24 * 3600 * 1000;
         var date = [];
@@ -225,152 +121,29 @@ class index extends React.Component {
             data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
         }
         data.unshift('线形图')
-        dataSetSource.push(date, data)
-        series.push({
-            type: 'line',
-            smooth: true,
-            areaStyle: '#D7E2D8',
-            itemStyle: lineStyleArr[0],
-            seriesLayoutBy: 'row',
-            encode: {x: 0, y: 1, legend: 1, seriesName: 1},
-            showSymbol: false
-        })
+        lineDataSetSource.push(date, data)
 
         this.setState({
-            optionLine: {
-                ...optionLine,
-                dataset: {
-                    source: dataSetSource
-                },
-                series
-            }
+            lineDataSetSource
         })
-    }
-
-    initChartOptions() {
-        return new Promise((resolve, reject) => {
-            const defaultPodData = [
-                {value: 1, name: '轻微'},
-                {value: 0, name: '中等'},
-                {value: 0, name: '严重'},
-            ]
-            try {
-                const optionLine = this.getLineOptions()
-                const optionBar = this.getBarOptions()
-                this.setState({
-                    optionLine,
-                    optionBar
-                }, () => {
-                    resolve(true)
-                })
-            }catch (e) {
-                reject(false)
-            }
-        })
-    }
-
-    getLineOptions() {
-        return {
-            title: {
-                text: '当前实时人流',
-                left: '2%',
-                top: 'top',
-                textStyle: titleCommonStyle
-            },
-            tooltip: {
-                trigger: 'axis',
-                // formatter: (params) => {
-                //     // '{a} <br/>{b} : {c} ({d}%)'
-                //     const tooltipInfo = []
-                //     params.forEach((param, index) => {
-                //         const addition = param.seriesName && param.seriesName.indexOf('利用率') > -1 ? '%' : ''
-                //         tooltipInfo.push(`${param.seriesName}: ${param.value[index + 1]}` + addition)
-                //     })
-                //     return tooltipInfo.join('<br/>')
-                // }
-            },
-            dataset: {
-                source: []
-            },
-            legend,
-            grid,
-            xAxis: xAxisCommonStyle,
-            yAxis: yAxisCommonStyle,
-            series: [
-                {
-                    type: 'line',
-                    smooth: true,
-                    seriesLayoutBy: 'row',
-                    encode: {x: 0, y: 1, legend: 1, seriesName: 1},
-                    showSymbol: false
-                }
-            ]
-        }
-    }
-
-    getBarOptions() {
-        return {
-            color: '#71A9C8',
-            title: {
-                text: '过去6小时人流趋势图',
-                subtext: ''
-            },
-            xAxis: {
-                data: [],
-                axisLabel: {
-                    inside: true,
-                    textStyle: {
-                        color: '#fff'
-                    }
-                },
-                axisTick: {
-                    show: false
-                },
-                axisLine: {
-                    show: false
-                },
-                z: 10
-            },
-            yAxis: {
-                axisLine: {
-                    show: false
-                },
-                axisTick: {
-                    show: false
-                },
-                axisLabel: {
-                    textStyle: {
-                        color: '#999'
-                    }
-                }
-            },
-            legend,
-            grid,
-            series: [
-                {
-                    name:'直接访问',
-                    type:'bar',
-                    barWidth: '60%',
-                    data: []
-                }
-            ]
-        }
     }
 
     handleRedioChange(e) {
-        if(e.target.value === '0') {
+        changeVideoSource(pageName, e.target.value)
+        if(e.target.value === 'rtmp') {
             this.setState({
-                videoUrl: "rtmp://106.13.139.118:1935/vod/car.mp4"
+                videoUrl: "rtmp://192.168.1.101:1935/live/1"
             })
         } else {
             this.setState({
-                videoUrl: "rtmp://106.13.139.118:1935/vod/flowcount.mp4"
+                videoUrl: "rtmp://192.168.1.101:1935/live/2"
+                // videoUrl: "rtmp://106.13.139.118:1935/vod/flowcount.mp4"
             })
         }
     }
 
     render() {
-        const {optionBar, pieData, optionLine, currentPieData, tableData, tableLoading, videoUrl} = this.state
+        const {pieData, barData, barDataAxis, lineDataSetSource, currentPieData, tableData, tableLoading, videoUrl} = this.state
         const columns = [
             {
                 title: '地址',
@@ -395,7 +168,7 @@ class index extends React.Component {
         // const tagColors = ['#2db7f5', '#f50' , '']
 
         return (
-            <Row gutter={16} className='person-flow-container'>
+            <Row gutter={16} className='person-flow-container container-content'>
                 <Col span={18}>
                     <Card bordered={false} hoverable className='video-container-card' style={{height: 978}}>
                         <Video videoFileStream={videoUrl}/>
@@ -406,16 +179,23 @@ class index extends React.Component {
                     <Card style={{height: 85}}
                           bordered={false}
                           hoverable>
-                        <Radio.Group defaultValue="0" buttonStyle="solid" onChange={this.handleRedioChange.bind(this)}>
-                            <Radio.Button value="0">摄像头</Radio.Button>
-                            <Radio.Button value="1">播放视频</Radio.Button>
+                        <Radio.Group defaultValue="rtmp" buttonStyle="solid" onChange={this.handleRedioChange.bind(this)}>
+                            <Radio.Button value="rtmp">摄像头</Radio.Button>
+                            <Radio.Button value="video">播放视频</Radio.Button>
                         </Radio.Group>
                     </Card>
 
                     <Card style={{height: 213}}
                           bordered={false}
                           hoverable>
-                        <AutoRefreshChart options={optionBar} height='165px' width='100%'/>
+
+                        <BarChart dataAxis={barDataAxis}
+                                  data={barData}
+                                  title='当前人流密度分类占比'
+                                  subtitle=''
+                                  height='165px'
+                                  width='100%'
+                                  seriesName='当前人流密度分类占比'/>
                     </Card>
 
                     <Card style={{height: 135}}
@@ -432,14 +212,14 @@ class index extends React.Component {
                             <Col span={18}>
                                 <h3 style={{textAlign: 'center', fontWeight: 700}}>当前人流密度分类占比</h3>
                                 <div className='pie-data flex-row'>
-                                {
-                                    currentPieData && Array.isArray(currentPieData) && (currentPieData.map((pieData, index) => {
-                                        return <div>
-                                            <Tag color={tagColors[index]}>{pieData.name}</Tag>
-                                            <span style={{fontSize: 18, fontWeight: 500}}>{pieData.value}</span>
-                                        </div>
-                                    }))
-                                }
+                                    {
+                                        currentPieData && Array.isArray(currentPieData) && (currentPieData.map((pieData, index) => {
+                                            return <div>
+                                                <Tag color={tagColors[index]}>{pieData.name}</Tag>
+                                                <span style={{fontSize: 18, fontWeight: 500}}>{pieData.value}</span>
+                                            </div>
+                                        }))
+                                    }
                                 </div>
                             </Col>
                         </Row>
@@ -457,12 +237,16 @@ class index extends React.Component {
                     <Card style={{height: 213}}
                           bordered={false}
                           hoverable>
-                        <AutoRefreshChart options={optionLine}
-                                          timeInterval={30}
-                                          query={this.loadLineData.bind(this)}
-                                          loopQuery={true}
-                                          height='165px'
-                                          width='100%'/>
+
+                        <LineChart data={lineDataSetSource}
+                                  title='当前人流密度分类占比'
+                                  subtitle=''
+                                  seriesName='当前人流密度分类占比'
+                                   timeInterval={30}
+                                   query={this.loadLineData.bind(this)}
+                                   loopQuery={true}
+                                   height='165px'
+                                   width='100%'/>
                     </Card>
                 </Col>
             </Row>

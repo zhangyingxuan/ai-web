@@ -29,8 +29,10 @@ class HeaderCustom extends Component {
                         {/*    type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}*/}
                         {/*    onClick={this.props.toggle}*/}
                         {/*/>*/}
+
+                        <div className="logo"/>
                     </Col>
-                    <Col span={10} style={{fontSize: '32px', color: '#FF9800'}}>
+                    <Col span={23} style={{fontSize: '32px', color: '#FF9800', textAlign: 'center'}}>
                         AI视觉智能分析平台
                     </Col>
                 </Row>

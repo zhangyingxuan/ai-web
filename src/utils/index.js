@@ -52,7 +52,7 @@ export function decryptByAES(ciphertext, key) {
 }
 
 export function changeVideoSource(sdkName, type) {
-    // person，hat，lg，wei，face
+    // person,wei,hat,lg,face
     // video，rtsp
     API.common.executeShell({
         sdkName: sdkName,

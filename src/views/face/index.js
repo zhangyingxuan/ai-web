@@ -3,7 +3,7 @@ import {Button, Card, Icon} from "antd";
 import Video from "../../components/widget/customVidio";
 import {changeVideoSource} from '@/utils'
 
-const pageName = 'jobs'
+const pageName = 'face'
 
 class index extends React.Component {
     constructor(props) {
@@ -30,11 +30,11 @@ class index extends React.Component {
         changeVideoSource(pageName, value)
         if (value === 'rtmp') {
             this.setState({
-                videoUrl: "rtmp://192.168.1.101:1935/live/7"
+                videoUrl: "rtmp://192.168.1.101:1935/live/5"
             })
         } else {
             this.setState({
-                videoUrl: "rtmp://192.168.1.101:1935/live/8"
+                videoUrl: "rtmp://192.168.1.101:1935/live/6"
             })
         }
     }

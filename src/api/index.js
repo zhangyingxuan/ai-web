@@ -12,6 +12,7 @@ import * as pusergroupmemner from './modules/pusergroupmemner'
 import * as papp from './modules/papp'
 import * as palarmrule from './modules/palarmrule'
 import * as personflow from './modules/personflow'
+import * as hat from './modules/hat'
 import * as electronic from './modules/electronic'
 
 export default {
@@ -28,6 +29,7 @@ export default {
     pusergroupmemner, // 成员组管理
     papp, // 应用
     personflow, // 应用
-    electronic, // 应用
+    electronic, // 边界
+    hat, // 脱帽
     palarmrule
 }

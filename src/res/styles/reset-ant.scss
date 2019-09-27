@@ -5,10 +5,9 @@
 
   .logo {
     height: 64px;
-    background-image: url("../imgs/logo.svg");
-    background-size: 48px 64px;
+    background: url("../imgs/logo.svg") no-repeat;
+    background-size: 64px;
     border-radius: 6px;
-    margin: 16px;
   }
 
   .ant-layout-header {
@@ -17,30 +16,34 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
   }
 
-  .ant-layout-sider,
-  .ant-menu-dark, .ant-menu-dark .ant-menu-sub {
-    background-color: #0a0a0a;
-    //box-shadow: 0 234px 8px rgba(0, 0, 0, 0.45) inset;
+  .ant-layout-sider {
+    background-color: #fff;
   }
 
-  .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-    box-shadow: none;
-  }
-
-  .ant-menu-item:hover,
-  .ant-menu-item-selected {
-    background-color: #36383e !important;
-    a {
-      color: #35b5ff !important;
-    }
-  }
-
-  .ant-menu-dark .ant-menu-item,
-  .ant-menu-dark .ant-menu-item-group-title,
-  .ant-menu-dark .ant-menu-item > a,
-  .ant-menu-dark, .ant-menu-dark .ant-menu-sub{
-    color: #ffffff;
-  }
+  //.ant-layout-sider,
+  //.ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+  //  background-color: #0a0a0a;
+  //  //box-shadow: 0 234px 8px rgba(0, 0, 0, 0.45) inset;
+  //}
+  //
+  //.ant-menu-dark .ant-menu-inline.ant-menu-sub {
+  //  box-shadow: none;
+  //}
+  //
+  //.ant-menu-item:hover,
+  //.ant-menu-item-selected {
+  //  background-color: #36383e !important;
+  //  a {
+  //    color: #35b5ff !important;
+  //  }
+  //}
+  //
+  //.ant-menu-dark .ant-menu-item,
+  //.ant-menu-dark .ant-menu-item-group-title,
+  //.ant-menu-dark .ant-menu-item > a,
+  //.ant-menu-dark, .ant-menu-dark .ant-menu-sub{
+  //  color: #ffffff;
+  //}
 
   //重置样式
   .ant-layout-content > div {
